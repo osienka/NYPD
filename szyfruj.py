@@ -39,7 +39,6 @@ def szyfruj(text):
         for i in swoj:
             for j in i:
                 s.add(j)
-        print(s)
         assert len(s) == 12, "Podaj prawidłowy szyfr"
         ds = dict(swoj)
         for j in tekst:
