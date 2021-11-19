@@ -2,7 +2,7 @@ d1 = {"g":"a","d":"e","r":"y","p":"o","l":"u","k":"i"}
 d2 = {"p":"o","l":"i","t":"y","k":"a","r":"e","n":"u"}
 
 def split(word):
-            return [char for char in word]
+    return [char for char in word]
 
 def szyfruj(text):
     tekst = text.lower()
