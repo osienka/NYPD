@@ -1,13 +1,12 @@
-import sys
 import csv
 
-def load():
-    d = {}
-    with open(sys.argv[1], newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        for j in spamreader[0]:
-            d.keys.append(j)
-        for row in range(1,len(spamreader)):
-            for i in range(len(row)):
-                d[i].append(spamreader[i])
-    return d
+def load(fileDir: str):
+    d = []
+    with open(fileDir, encoding="utf8") as f:
+        csv_reader = csv.reader(f)
+        for line in csv_reader:
+            d.append(line)
+        for i in range(1, len(d)):
+          for j in range(4):
+                d[i][j] = float(d[i][j])
+    return d[1:]

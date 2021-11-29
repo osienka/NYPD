@@ -1,10 +1,7 @@
-import sys
 import csv
-def save(data):
-    with open(sys.argv[2], 'w') as writer:
-        for i in range(len(data)):
-            for j in range(len(i)):
-                writer.write(data[i][j])
-                writer.write(',')
-            writer.write(' ')
+
+def save(data, fileDir: str):
+    with open(fileDir, 'w', encoding='UTF8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(data)
     return writer
