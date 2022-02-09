@@ -79,12 +79,12 @@ def lacz(jst: pd.DataFrame, lud: pd.DataFrame):
   tabela : pandas.DataFrame
       połączona tabela z danymi
   """
-    if jst[1][0] is not None:
+    if jst[1][1] is not None:
         lud["code"] = lud[[1]]
         jst = code_jst(jst)
         tabela = pd.merge(left=jst, right=lud, on=["code"], how="inner")
     else:
-        lud["nazwa"] = [lud[i][0].lower() if i < 16 else i for i in range(len(lud))]
+        lud["nazwa"] = [lud[0][i].lower() if i < 16 else i for i in range(len(lud))]
         jst["nazwa"] = jst[[4]]
         tabela = pd.merge(left=jst, right=lud, on=["nazwa"], how="inner")
     return tabela
