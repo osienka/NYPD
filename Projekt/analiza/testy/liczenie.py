@@ -67,22 +67,19 @@ gm20_lud.columns = [ '0_x', '1_x', '2_x', 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, '
 def test_dochod_jst():
     result = {"0201011":40456699, "0201022": 13789712, "0201032": 3573540,"0201043":9553744,"0201052":5844560,"0201062":5992663}
     assert licz.dochod_jst(gm20_lud) == result
-    #assert licz.dochod_jst([]) == {}
 
 def test_porownaj_lata():
     result = {'0201': -704831, '0202': -574580, '0203': -1426578, '0204': -101244, '0205': -97584, '0206': -181064}
     assert licz.porownaj_lata(licz.dochod_jst(pow20_lud),pow19_lud) == result
-    #assert licz.porownaj_lata({},[]) == {}
     
 def test_sr_dochod_opodatkowany():
-    result = [10457.326859, 9415.837353, 14423.547601, 7255.197622, 9270.598703, 10758.484565]
-    assert licz.sr_dochod_opodatkowany(pow20_lud)["mean"][0:6] == result
-    #assert licz.sr_dochod_opodatkowany([]) == []
+    result = [9522.118766, 8573.770598, 13133.636840, 6606.358810, 8441.520770, 9796.343669]
+    assert licz.sr_dochod_opodatkowany(pow20_lud)["mean"] == result
 
 def test_licz_war_i_sr():
-    result = [{'bolesławiecki': 159214583321121.6}, {'bolesławiecki': 22509232.14593035}]
-    assert licz.licz_war_i_sr(gm20_lud) == result
+    result = [{'dolnośląskie': 3916679.000884527}, {'dolnośląskie': 9727.71308018942}]
+    assert licz.licz_war_i_sr(licz.sr_dochod_opodatkowany(pow20_lud)) == result
 
 def test_porownaj_przewidywany():
-    por = licz.por_przewidywany(pow20_lud, licz.licz_war_i_sr(gm20_lud)[1])
-    assert por == {'bolesławiecki': -1232699.1459303498}
+    por = licz.por_przewidywany(licz.sr_dochod_opodatkowany(pow20_lud), licz.licz_war_i_sr(licz.sr_dochod_opodatkowany(gm20_lud))[1])
+    assert por == {'bolesławiecki': 205.09855677296764}
