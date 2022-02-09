@@ -38,7 +38,7 @@ def load_lud(fileDir: str):
   """
     if not os.path.exists(fileDir):
         raise FileExistsError(f"File '{fileDir}' doesn't exist")
-    data = pd.read_excel(fileDir, usecols=[0, 1, 2], skiprows=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], header=None,
+    data = pd.read_excel(fileDir, usecols=[0, 1, 2], skiprows=[0, 1, 2, 3, 4, 5, 6, 7], header=None,
                          converters={0: str, 1: str})
     data.dropna(how="all", inplace=True)
     return data
