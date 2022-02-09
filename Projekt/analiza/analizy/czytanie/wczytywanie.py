@@ -84,7 +84,7 @@ def lacz(jst: pd.DataFrame, lud: pd.DataFrame):
         jst = code_jst(jst)
         tabela = pd.merge(left=jst, right=lud, on=["code"], how="inner")
     else:
-        lud["nazwa"] = [lud[0][i].lower() if i < 16 else i for i in range(len(lud))]
-        jst["nazwa"] = jst[[4]]
-        tabela = pd.merge(left=jst, right=lud, on=["nazwa"], how="inner")
+        lud["code"] = [lud[0][i].lower() if i < 16 else i for i in range(len(lud))]
+        jst["code"] = jst[[4]]
+        tabela = pd.merge(left=jst, right=lud, on=["code"], how="inner")
     return tabela
